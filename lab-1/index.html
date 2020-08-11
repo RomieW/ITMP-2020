@@ -4,19 +4,22 @@
 	<title>Lab - Multimedia Programming 2563 ITKMITL</title>
 	<link rel=stylesheet href="../src/reset.css">
 	<link rel=stylesheet href="lab.css">
+	<link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300&family=Open+Sans&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
-<body class="paper">
+<body>
+	<div class = "tabbar"></div>
 	<div id="app">
 		<input type="number" v-model="n">
 		<input type="number" v-model="row">
 		<div class="space"></div>
 		<h2>สูตรคูณแม่ {{n}}</h2>
-		<h5>ตั้งแต่ 1 -> {{row}}</h5>
-		<h3 v-for = "i in r">
+		<h4>ตั้งแต่ 1 -> {{row}}</h4>
+		<div class = "order">
+		<p v-for = "i in r">
 			{{n}} x {{i}} = {{x(i)}}
-		</h3>
-
+		</p>
+		</div>
 	</div>
 
 	<script>
@@ -31,7 +34,7 @@
 					return this.n*row
 				}
 			},
-
+	
 			computed: {
 				r: function(){
 					return parseInt(this.row)
