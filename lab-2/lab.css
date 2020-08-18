@@ -13,3 +13,12 @@ body {
     font-size: 45px;
     margin: 0;
 }
+
+.data:hover{
+    background-color: red;
+}
+
+.data{
+    margin: auto;
+    padding: 0px;
+}

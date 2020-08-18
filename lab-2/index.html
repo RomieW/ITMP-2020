@@ -22,10 +22,11 @@
 		<img :src="yesno.image" alt="">
 
 		<h2 class="user">Users</h2>
-		<h2 v-for=" u in users" :data-id = "u.id" @click="viewBio(u)">
-			<img :src="`http://picsum.photos/id/3${u.id}/300/300`" alt="">
+		<h2 class="data" v-for=" u in users" :data-id = "u.id" @click="viewBio(u)">
+			<img :src="`http://picsum.photos/id/10${u.id}/150/150`" alt="">
 			{{u.username}}
 		</h2>
+
 	</div>
 	
 
