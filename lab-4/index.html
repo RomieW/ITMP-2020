@@ -59,6 +59,7 @@
 					//เช็คดูว่าดูหรือไม่
 					if (e==true) {
 						if(this.time >0){
+							//จะเข้าเงื่อนไขเมื่อเวลามากกว่า 0
 							app.correct()
 						}
                     }
@@ -68,7 +69,7 @@
 					}
 				},
 				correct: function(){
-					//เข้าด่านใหม่
+					//เมื่อคลิ๊กถูกอัน
 					
 					this.row = rand(2,12)
 					this.pick = rand(1,this.row*this.row) //ตัว random
@@ -81,7 +82,7 @@
 				},
 
 				uncorrect: function(){
-					
+					//เมื่อคลิ๊กผิด
 					this.pick = rand(1,this.row*this.row) //ตัว random
 					this.h = rand(1,225)
 					if(this.score > 0){
