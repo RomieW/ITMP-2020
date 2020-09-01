@@ -35,7 +35,7 @@
 
 	<script>
 		let picklight = "20%" //เลือกว่ารอบนี้ อันพิเศษจะมีความสว่าง 20%
-		
+		//document.registerElement('a-dot') //ให้ vue รู้จัก a-dot
 
 		function rand(start,stop){//สร้างฟังก์ชัน random ไว้ใช้
 			let shift = (stop-start)+1
@@ -59,7 +59,7 @@
 					//เช็คดูว่าดูหรือไม่
 					if (e==true) {
 						if(this.time >0){
-							//จะเข้าเงื่อนไขเมื่อเวลามากกว่า 0
+							//จะเข้าเงื่อนไขเมื่อเวลามากกว่า0
 							app.correct()
 						}
                     }
