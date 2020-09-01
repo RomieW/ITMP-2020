@@ -10,25 +10,25 @@
 	<div id="canvas">
 		<section id="canvas_header">
 			<div>
-				เหลือเวลา 10 วินาที
+				เหลือเวลา {{time}} วินาที
 			</div>
 		</section>
 		<section id="canvas_main">
 			<main>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
-				<a-dot style="--l:80%"></a-dot>
-				<a-dot data-pick="true"></a-dot>
-				<a-dot></a-dot>
-				<a-dot></a-dot>
+				<a-dot v-for="i in row*row"
+				:style="{
+					'--row':row,
+					'--h':h,
+					'--l':l+'%',
+				}"
+					:data-pick="i == pick"
+					@click="check(i == pick)"
+				></a-dot>
 			</main>
 		</section>
 		<section id="canvas_footer">
 			<div>
-				0 คะแนน
+				{{score}} คะแนน
 			</div>
 		</section>
 	</div>
@@ -45,19 +45,61 @@
 		let app = new Vue({
 			el:'#canvas',
 			data:{
-				row:2, //จำนวนแถวที่จะมีในรอบนี้
-				h:330, // hue ในรอบนี้
-				time:10, //เวลาเริ่มต้น
+				row:3, //จำนวนแถวที่จะมีในรอบนี้
+				h:200, // hue ในรอบนี้
+				time:20, //เวลาเริ่มต้น
 				score:0, //คะแนนเริ่มต้น
 				pick:1, //หมายเลขวงกลมที่จะสีแตกต่างจากก้อนอื่นๆ
-				l:30,//ความสว่างของสีทั่วไปในรอบนี้
+				l:80,//ความสว่างของสีทั่วไปในรอบนี้
 			},
 			methods: {
+				check: function(e){
+					console.log(e)
+					
+					//เช็คดูว่าดูหรือไม่
+					if (e==true) {
+						if(this.time >0){
+							app.correct()
+						}
+                    }
+
+					if (e== false) {
+                        app.uncorrect()
+					}
+				},
+				correct: function(){
+					//เข้าด่านใหม่
+					
+					this.row = rand(2,12)
+					this.pick = rand(1,this.row*this.row) //ตัว random
+					this.h = rand(1,225)
+					this.l = rand(1,100)
+					this.score++
+					this.time += 3
+					console.log('Correct!')
+
+				},
+
+				uncorrect: function(){
+					
+					this.pick = rand(1,this.row*this.row) //ตัว random
+					this.h = rand(1,225)
+					if(this.score > 0){
+						this.score--
+					}
+					if(this.time > 0){
+						this.time -= 5
+					}
+					console.log('Uncorrect!')
+
+				},
+				
 			}
 		})
 		//ทำให้แคนวาสมี --picklight ตามที่กำหนดไว้ข้างบน
 		document.querySelector('#canvas').style.setProperty('--picklight',picklight);
-		
+		//เอาไปใช้อีกตอนเปลี่ยนด่าน
+
 		let counter = setInterval(()=>{
 			if (app.time>0) {
 				app.time--
