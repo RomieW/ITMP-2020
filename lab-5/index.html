@@ -25,7 +25,7 @@
 
 				<div class="box _origin"></div>
 				<div class="box _12" data-pst="12"></div>
-				<div class="box _16" data-pst="16"></div>
+				<div class="box _14" data-pst="14"></div>
 				
 			</main>
 		</section>
@@ -45,7 +45,7 @@
 			return Math.floor(Math.random()*100%shift)+start
 		}
 		
-		let nextFruitId = 3
+		let FruitId = 3
 		let isRightArrow = 1
 		let speed = 1000
 		let app = new Vue({
@@ -105,9 +105,26 @@
 						if(run){
 							this.fruits[f].pst = this.fruits[f].pst+this.fruits[f].step
 						}
+
+							//stop fruits go to origin box
+						if(this.fruits[f].pst == 12 || this.fruits[f].pst == 14){
+							this.fruits[f].run = false;
+						}
 					}
 
+					//spawn fruits
+					let spawn = rand(0,1)
+					if(spawn == 1){
+							born = rand(0,1)
+						if(born == 0){
+							this.fruits.push({id:FruitId,type:11,pst:1,run:true,step:1})
+						}else{
+							this.fruits.push({id:FruitId,type:13,pst:1,run:true,step:1})
+						}
+						FruitId++;
+					}
 				}
+				
 			},
 		})
 
